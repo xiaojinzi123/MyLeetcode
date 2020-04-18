@@ -1,9 +1,6 @@
 package com.xiaojinzi;
 
 import com.xiaojinzi.support.SearchTreeList;
-import com.xiaojinzi.support.TreeNode;
-
-import java.util.List;
 
 public class 二叉树的遍历 {
 
@@ -19,17 +16,10 @@ public class 二叉树的遍历 {
 
         treeList.inOrder();
 
-        treeList.remove(new Integer(3));
-        treeList.inOrder();
-        treeList.remove(new Integer(2));
-        treeList.inOrder();
-        treeList.remove(new Integer(5));
-        treeList.inOrder();
-        treeList.remove(new Integer(7));
-        treeList.inOrder();
-        treeList.remove(new Integer(1));
-        treeList.inOrder();
+        treeList.remove(1);
+        treeList.remove(1);
 
+        treeList.inOrder();
 
     }
 

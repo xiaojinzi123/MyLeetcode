@@ -1,6 +1,6 @@
 package com.xiaojinzi;
 
-import com.xiaojinzi.support.NonNull;
+import com.xiaojinzi.support.annotation.NonNull;
 
 /**
  * 我认为字符串的字符都是 ascii 中的字符

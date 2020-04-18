@@ -1,6 +1,7 @@
 package com.xiaojinzi.support;
 
-import java.util.logging.Handler;
+import com.xiaojinzi.support.annotation.NonNull;
+import com.xiaojinzi.support.annotation.Nullable;
 
 /**
  * 添加进来的每一个元素都是会排序好的. 每一个操作都是 O(logN)
@@ -29,7 +30,7 @@ public class SearchTreeList<T extends Comparable> {
     }
 
     public boolean contains(T o) {
-        return false;
+        return indexOf(o) != -1;
     }
 
     public boolean add(@NonNull T o) {
@@ -157,34 +158,81 @@ public class SearchTreeList<T extends Comparable> {
     }
 
     public void clear() {
-        //
+        header = null;
+        mSize = 0;
     }
 
     public T get(int index) {
-        if (index > mSize - 1) {
+        return getNode(index).getValue();
+    }
+
+    private TreeNode<T> getNode(int index) {
+        if (index > mSize - 1 || index < 0) {
             throw new IndexOutOfBoundsException("index = " + index);
         }
-        return null;
+        // index = 0 表示要找的下标, index = 1 表示总数量
+        int arr[] = new int[]{index, 0};
+        return getRecursion(header, arr);
     }
 
-    public T set(int index, T element) {
-        return null;
-    }
-
-    public void add(int index, T element) {
-
+    @Nullable
+    private TreeNode<T> getRecursion(TreeNode<T> node, int[] arr) {
+        if (node == null) {
+            return null;
+        }
+        TreeNode<T> result = getRecursion(node.getLeft(), arr);
+        if (result != null) {
+            return result;
+        }
+        if (arr[0] == arr[1]) {
+            return node;
+        }
+        arr[1]++;
+        return getRecursion(node.getRight(), arr);
     }
 
     public T remove(int index) {
-        return null;
+        T targetValue = getNode(index).getValue();
+        remove(targetValue);
+        return targetValue;
     }
 
+    /**
+     * 使用中序遍历的方式进行遍历
+     *
+     * @param o 目标值
+     * @return 如果返回 -1 表示没找到, 否则返回找到的元素的下标
+     */
     public int indexOf(T o) {
-        return 0;
+        int[] result = new int[]{-1, 0};
+        indexElementRecursion(header, o, result);
+        return result[0];
     }
 
-    public int lastIndexOf(T o) {
-        return 0;
+    /**
+     * 需要使用中序遍历
+     *
+     * @param node   当前节点
+     * @param target 目标值
+     * @param result 保存找到的 index 和 节点 count 的数据对象
+     */
+    private void indexElementRecursion(@Nullable TreeNode<T> node,
+                                       @NonNull T target, int[] result) {
+        if (node == null) {
+            return;
+        }
+        indexElementRecursion(node.getLeft(), target, result);
+        // 如果没找到
+        if (result[0] == -1) {
+            // 如果和节点值相等
+            if (target.compareTo(node.getValue()) == 0) {
+                result[0] = result[1];
+                return;
+            } else {
+                result[1]++;
+                indexElementRecursion(node.getRight(), target, result);
+            }
+        }
     }
 
     private boolean addNode(@NonNull TreeNode<T> treeNode, @NonNull T targetValue) {

@@ -1,5 +1,7 @@
 package com.xiaojinzi.support;
 
+import com.xiaojinzi.support.annotation.Nullable;
+
 public class LinkedList<T> {
 
     private int mSize;
