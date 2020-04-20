@@ -3,6 +3,8 @@ package com.xiaojinzi.support;
 import com.xiaojinzi.support.annotation.NonNull;
 import com.xiaojinzi.support.annotation.Nullable;
 
+import java.util.Objects;
+
 /**
  * 添加进来的每一个元素都是会排序好的. 每一个操作都是 O(logN)
  *
