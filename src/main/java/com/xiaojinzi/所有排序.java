@@ -7,6 +7,8 @@ public class 所有排序 {
         int[] arr1 = new int[]{5, 1};
         int[] arr2 = new int[]{8, 3, 9, 10, 6, 7, 5, 1, 4, 2};
 
+        // quickSort(arr1, 0, arr1.length - 1);
+        // quickSort(arr2, 0, arr2.length - 1);
         mergeSort(arr1);
         mergeSort(arr2);
 
@@ -20,49 +22,52 @@ public class 所有排序 {
      */
     private static void mergeSort(int[] arr) {
         int[] temp = new int[arr.length];
-        doMergeSort(arr, 0, arr.length - 1, temp, 0, temp.length - 1);
+        doMergeSort(arr, 0, arr.length - 1, temp);
     }
 
     /**
      * 归并排序
      */
     private static void doMergeSort(int[] arr, int start, int end,
-                                    int[] temp, int tempStart, int tempEnd) {
+                                    int[] temp) {
 
+        // 结束条件. 如果只有一个要处理的元素, 那就说明不用处理了, 直接返回
         if (start >= end) {
             return;
         }
+
+        // 本次需要处理的长度
         int length = end - start + 1;
-        // 7 --> 3, 6 --> 3
-        int centenrIndex = (start + end) / 2;
 
-        doMergeSort(arr, start, centenrIndex, temp, start, centenrIndex);
-        doMergeSort(arr, centenrIndex + 1, end, temp, centenrIndex + 1, end);
+        // 中间的下标
+        int centerIndex = (start + end) / 2;
 
-        // 分出来的两段排序好之后合并到 temp 中
-        int i = start, j = centenrIndex + 1;
+        doMergeSort(arr, start, centerIndex, temp);
+        doMergeSort(arr, centerIndex + 1, end, temp);
 
-        for (int n = tempStart; n <= tempEnd; n++) {
-            int targetIndex;
-            if (i > centenrIndex) {
-                targetIndex = j;
-                j++;
-            } else if (j > end) {
-                targetIndex = i;
-                i++;
+        // 把两段有序的区域的数据都放到 temp 中
+        int left = start, right = centerIndex + 1;
+        for (int n = 0; n < length; n++) {
+            int targetIndex = 0;
+            if (left > centerIndex) {
+                targetIndex = right;
+                right++;
+            } else if (right > end) {
+                targetIndex = left;
+                left++;
             } else {
-                if (arr[i] <= arr[j]) {
-                    targetIndex = i;
-                    i++;
+                if (arr[left] <= arr[right]) {
+                    targetIndex = left;
+                    left++;
                 } else {
-                    targetIndex = j;
-                    j++;
+                    targetIndex = right;
+                    right++;
                 }
             }
             temp[n] = arr[targetIndex];
         }
 
-        System.arraycopy(temp, tempStart, arr, start, length);
+        System.arraycopy(temp, 0, arr, start, length);
 
     }
 

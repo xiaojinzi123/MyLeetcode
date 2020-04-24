@@ -14,12 +14,16 @@ public class 二叉树的遍历 {
         treeList.add(1);
         treeList.add(3);
 
-        treeList.inOrder();
+        // treeList.inOrder();
 
-        treeList.remove(1);
-        treeList.remove(1);
+        treeList.depthFirst();
+        // treeList.breadthFirst();
+        System.out.println();
 
-        treeList.inOrder();
+        // treeList.remove(1);
+        // treeList.remove(1);
+
+        // treeList.inOrder();
 
     }
 

@@ -3,7 +3,10 @@ package com.xiaojinzi.support;
 import com.xiaojinzi.support.annotation.NonNull;
 import com.xiaojinzi.support.annotation.Nullable;
 
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.Objects;
+import java.util.Stack;
 
 /**
  * 添加进来的每一个元素都是会排序好的. 每一个操作都是 O(logN)
@@ -278,10 +281,53 @@ public class SearchTreeList<T extends Comparable> {
 
     }
 
+    /**
+     * 中序遍历
+     */
     public void inOrder() {
         System.out.println("中序遍历开始");
         inOrderRecursive(header);
         System.out.println("中序遍历结束\n");
+    }
+
+    /**
+     * 深度优先遍历
+     */
+    public void depthFirst() {
+        if (isEmpty()) {
+            return;
+        }
+        depthFirstRecursion(header);
+    }
+
+    private void depthFirstRecursion(TreeNode<T> node) {
+        if (node == null) {
+            return;
+        }
+        System.out.println(node.getValue());
+        depthFirstRecursion(node.getLeft());
+        depthFirstRecursion(node.getRight());
+    }
+
+    /**
+     * 广度优先遍历
+     */
+    public void breadthFirst() {
+        if (isEmpty()) {
+            return;
+        }
+        Deque<TreeNode<T>> deque = new LinkedList<>();
+        deque.add(header);
+        while (!deque.isEmpty()) {
+            TreeNode<T> node = deque.pop();
+            System.out.println(node.getValue());
+            if (node.getLeft() != null) {
+                deque.add(node.getLeft());
+            }
+            if (node.getRight() != null) {
+                deque.add(node.getRight());
+            }
+        }
     }
 
     private void inOrderRecursive(@Nullable TreeNode<T> node) {
