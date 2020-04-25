@@ -3,6 +3,7 @@ package com.xiaojinzi;
 import com.xiaojinzi.support.LinkedList;
 
 /**
+ * 题目2
  * 本次解答中. 首先利用了自定义的 {@link LinkedList} 以供链表部分的功能.
  * 然后 {@link #sum1(LinkedList, LinkedList)} 是链表正向表示数字的相加算法
  * {@link #sum2(LinkedList, LinkedList)} 是链表反向表示数字的相加算法

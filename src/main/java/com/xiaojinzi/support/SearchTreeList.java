@@ -24,6 +24,11 @@ public class SearchTreeList<T extends Comparable> {
     @Nullable
     private TreeNode<T> header;
 
+    @Nullable
+    public TreeNode<T> getHeader() {
+        return header;
+    }
+
     public int size() {
         return mSize;
     }
