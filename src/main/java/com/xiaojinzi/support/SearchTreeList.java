@@ -3,10 +3,8 @@ package com.xiaojinzi.support;
 import com.xiaojinzi.support.annotation.NonNull;
 import com.xiaojinzi.support.annotation.Nullable;
 
-import java.util.Deque;
+import java.util.*;
 import java.util.LinkedList;
-import java.util.Objects;
-import java.util.Stack;
 
 /**
  * 添加进来的每一个元素都是会排序好的. 每一个操作都是 O(logN)
@@ -284,43 +282,48 @@ public class SearchTreeList<T extends Comparable> {
     /**
      * 中序遍历
      */
-    public void inOrder() {
-        System.out.println("中序遍历开始");
-        inOrderRecursive(header);
-        System.out.println("中序遍历结束\n");
+    public List<T> inOrder() {
+        List<T> result = new ArrayList<>();
+        inOrderRecursive(header, result);
+        return result;
     }
 
     /**
      * 深度优先遍历
      */
-    public void depthFirst() {
+    @NonNull
+    public List<T> depthFirst() {
         if (isEmpty()) {
-            return;
+            return Collections.emptyList();
         }
-        depthFirstRecursion(header);
+        List<T> result = new ArrayList<>();
+        depthFirstRecursion(header, result);
+        return result;
     }
 
-    private void depthFirstRecursion(TreeNode<T> node) {
+    @NonNull
+    private void depthFirstRecursion(TreeNode<T> node, List<T> result) {
         if (node == null) {
             return;
         }
-        System.out.println(node.getValue());
-        depthFirstRecursion(node.getLeft());
-        depthFirstRecursion(node.getRight());
+        result.add(node.getValue());
+        depthFirstRecursion(node.getLeft(), result);
+        depthFirstRecursion(node.getRight(), result);
     }
 
     /**
      * 广度优先遍历
      */
-    public void breadthFirst() {
+    public List<T> breadthFirst() {
         if (isEmpty()) {
-            return;
+            return Collections.emptyList();
         }
+        List<T> result = new ArrayList<>();
         Deque<TreeNode<T>> deque = new LinkedList<>();
         deque.add(header);
         while (!deque.isEmpty()) {
             TreeNode<T> node = deque.pop();
-            System.out.println(node.getValue());
+            result.add(node.getValue());
             if (node.getLeft() != null) {
                 deque.add(node.getLeft());
             }
@@ -328,13 +331,14 @@ public class SearchTreeList<T extends Comparable> {
                 deque.add(node.getRight());
             }
         }
+        return result;
     }
 
-    private void inOrderRecursive(@Nullable TreeNode<T> node) {
+    private void inOrderRecursive(@Nullable TreeNode<T> node, List<T> result) {
         if (node != null) {
-            inOrderRecursive(node.getLeft());
-            System.out.println(node.getValue());
-            inOrderRecursive(node.getRight());
+            inOrderRecursive(node.getLeft(), result);
+            result.add(node.getValue());
+            inOrderRecursive(node.getRight(), result);
         }
     }
 

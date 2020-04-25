@@ -2,6 +2,7 @@ package com.xiaojinzi;
 
 
 import com.xiaojinzi.support.Point;
+import org.junit.Assert;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -9,7 +10,8 @@ import java.util.List;
 public class N皇后 {
 
     public static void main(String[] args) {
-        System.out.println(nQueen(4).size());
+        Assert.assertSame(2, nQueen(4).size());
+        Assert.assertSame(92, nQueen(8).size());
     }
 
     private static List<List<Point>> nQueen(int n) {

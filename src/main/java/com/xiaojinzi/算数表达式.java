@@ -1,5 +1,7 @@
 package com.xiaojinzi;
 
+import org.junit.Assert;
+
 import java.util.*;
 
 public class 算数表达式 {
@@ -7,34 +9,39 @@ public class 算数表达式 {
     public static void main(String[] args) {
 
         String str1 = "(10 - 2 * (6 - 3))";
-        System.out.println(str1 + " 的后缀表达式为：" + subfixExpression(str1));
-        System.out.println(str1 + " 递归的计算结果为：" + recursion(str1));
-        System.out.println(str1 + " 后缀表达式的计算结果为：" + subfixExpressionCalculate(str1));
-        System.out.println();
+        Assert.assertEquals(
+                Arrays.asList("10", "2", "6", "3", "-", "*", "-"),
+                subfixExpression(str1));
+        Assert.assertEquals(4d, recursion(str1), 0d);
+        Assert.assertEquals(4d, subfixExpressionCalculate(str1), 0d);
 
         String str2 = "(15 - 2^2^2)";
-        System.out.println(str2 + " 的后缀表达式为：" + subfixExpression(str2));
-        System.out.println(str2 + " 递归的计算结果为：" + recursion(str2));
-        System.out.println(str2 + " 后缀表达式的计算结果为：" + subfixExpressionCalculate(str2));
-        System.out.println();
+        Assert.assertEquals(
+                Arrays.asList("15", "2", "2", "^", "2", "^", "-"),
+                subfixExpression(str2));
+        Assert.assertEquals(-1d, recursion(str2), 0d);
+        Assert.assertEquals(-1d, subfixExpressionCalculate(str2), 0d);
 
         String str3 = "10 - 2 * 6 + 3";
-        System.out.println(str3 + " 的后缀表达式为：" + subfixExpression(str3));
-        System.out.println(str3 + " 递归的计算结果为：" + recursion(str3));
-        System.out.println(str3 + " 后缀表达式的计算结果为：" + subfixExpressionCalculate(str3));
-        System.out.println();
+        Assert.assertEquals(
+                Arrays.asList("10", "2", "6", "*", "-", "3", "+"),
+                subfixExpression(str3));
+        Assert.assertEquals(1d, recursion(str3), 0d);
+        Assert.assertEquals(1d, subfixExpressionCalculate(str3), 0d);
 
         String str4 = "10 - 2 - 6 + 3";
-        System.out.println(str4 + " 的后缀表达式为：" + subfixExpression(str4));
-        System.out.println(str4 + " 递归的计算结果为：" + recursion(str4));
-        System.out.println(str4 + " 后缀表达式的计算结果为：" + subfixExpressionCalculate(str4));
-        System.out.println();
+        Assert.assertEquals(
+                Arrays.asList("10", "2", "-", "6", "-", "3", "+"),
+                subfixExpression(str4));
+        Assert.assertEquals(5d, recursion(str4), 0d);
+        Assert.assertEquals(5d, subfixExpressionCalculate(str4), 0d);
 
         String str5 = "40 - (10 * 2 - 6) + 3";
-        System.out.println(str5 + " 的后缀表达式为：" + subfixExpression(str5));
-        System.out.println(str5 + " 递归的计算结果为：" + recursion(str5));
-        System.out.println(str5 + " 后缀表达式的计算结果为：" + subfixExpressionCalculate(str5));
-        System.out.println();
+        Assert.assertEquals(
+                Arrays.asList("40", "10", "2", "*", "6", "-", "-", "3", "+"),
+                subfixExpression(str5));
+        Assert.assertEquals(29d, recursion(str5), 0d);
+        Assert.assertEquals(29d, subfixExpressionCalculate(str5), 0d);
 
     }
 

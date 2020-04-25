@@ -1,19 +1,49 @@
 package com.xiaojinzi;
 
+import org.junit.Assert;
+
 public class 所有排序 {
+
+    static int[] arr1 = new int[]{5, 1};
+    static int[] arr2 = new int[]{8, 3, 9, 10, 6, 7, 5, 1, 4, 2};
+
+    private static void reSetArr() {
+        arr1 = new int[]{5, 1};
+        arr2 = new int[]{8, 3, 9, 10, 6, 7, 5, 1, 4, 2};
+    }
+
+    private static void checkArr() {
+        Assert.assertArrayEquals(
+                new int[]{1, 5},
+                arr1
+        );
+        Assert.assertArrayEquals(
+                new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
+                arr2
+        );
+    }
 
     public static void main(String[] args) {
 
-        int[] arr1 = new int[]{5, 1};
-        int[] arr2 = new int[]{8, 3, 9, 10, 6, 7, 5, 1, 4, 2};
+        reSetArr();
+        quickSort(arr1, 0, arr1.length - 1);
+        quickSort(arr2, 0, arr2.length - 1);
+        checkArr();
 
-        // quickSort(arr1, 0, arr1.length - 1);
-        // quickSort(arr2, 0, arr2.length - 1);
+        reSetArr();
         mergeSort(arr1);
         mergeSort(arr2);
+        checkArr();
 
-        printArr(arr1);
-        printArr(arr2);
+        reSetArr();
+        bubbleSort(arr1);
+        bubbleSort(arr2);
+        checkArr();
+
+        reSetArr();
+        selectSort(arr1);
+        selectSort(arr2);
+        checkArr();
 
     }
 
