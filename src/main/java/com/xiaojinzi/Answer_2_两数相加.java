@@ -9,7 +9,7 @@ import com.xiaojinzi.support.LinkedList;
  * {@link #sum2(LinkedList, LinkedList)} 是链表反向表示数字的相加算法
  * 两种方式作者都给出了解答和测试.
  */
-public class 两数相加 {
+public class Answer_2_两数相加 {
 
     public static void main(String[] args) {
 
