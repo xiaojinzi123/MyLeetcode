@@ -25,6 +25,8 @@ public class Answer_7_回文数 {
             Assert.assertEquals(item.getValue(), isPalindrome2(item.getKey()));
         }
 
+        System.out.println( (-11) % 10);
+
     }
 
     /**
