@@ -1,5 +1,7 @@
 package com.xiaojinzi.support;
 
+import com.xiaojinzi.support.annotation.NonNull;
+
 /**
  * 链表的节点
  */
@@ -22,6 +24,7 @@ public class Node<T> {
         this.next = next;
     }
 
+    @NonNull
     public <T> Node<T> newNext(T value) {
         Node<T> nextNode = new Node<>(value, this, null);
         this.next = nextNode;

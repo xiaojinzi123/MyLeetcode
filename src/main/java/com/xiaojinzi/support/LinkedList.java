@@ -17,7 +17,26 @@ public class LinkedList<T> {
 
     private int mSize;
 
-    private Node firstNode;
+    private Node header;
+
+    public LinkedList() {
+    }
+
+    public LinkedList(@Nullable Node header) {
+        this.header = header;
+        int size = 0;
+        Node<T> temp = header;
+        while (temp != null) {
+            size++;
+            temp = temp.getNext();
+        }
+        this.mSize = size;
+    }
+
+    @Nullable
+    public Node getHeader() {
+        return header;
+    }
 
     public boolean isEmpty() {
         return mSize == 0;
@@ -28,8 +47,8 @@ public class LinkedList<T> {
     }
 
     public LinkedList<T> add(T value) {
-        if (firstNode == null) {
-            firstNode = new Node(value);
+        if (header == null) {
+            header = new Node(value);
         } else {
             get(mSize - 1).newNext(value);
         }
@@ -46,7 +65,7 @@ public class LinkedList<T> {
             return add(value);
         } else {
             // target 不可能为 null
-            Node target = firstNode;
+            Node target = header;
             for (int i = 0; i < index; i++) {
                 target = target.getNext();
             }
@@ -64,7 +83,7 @@ public class LinkedList<T> {
         if (index >= mSize || index < 0) {
             throw new IndexOutOfBoundsException("index " + index);
         }
-        Node target = firstNode;
+        Node target = header;
         for (int i = 0; i < index; i++) {
             target = target.getNext();
         }
@@ -75,7 +94,7 @@ public class LinkedList<T> {
         if (index >= mSize || index < 0) {
             throw new IndexOutOfBoundsException("index " + index);
         }
-        Node target = firstNode;
+        Node target = header;
         for (int i = 0; i < index; i++) {
             target = target.getNext();
         }
@@ -87,14 +106,14 @@ public class LinkedList<T> {
         if (index >= mSize || index < 0) {
             throw new IndexOutOfBoundsException("index " + index);
         }
-        Node target = firstNode;
+        Node target = header;
         for (int i = 0; i < index; i++) {
             target = target.getNext();
         }
         // 如果是头一个
         if (target.getPre() == null) {
-            firstNode = target.getNext();
-            firstNode.setPre(null);
+            header = target.getNext();
+            header.setPre(null);
         } else {
             // 如果有上一个, 就把上一个接到下一个
             target.getPre().setNext(target.getNext());
@@ -104,11 +123,11 @@ public class LinkedList<T> {
     }
 
     public List<T> toList() {
-        if (firstNode == null) {
+        if (header == null) {
             return Collections.emptyList();
         }else {
             List<T> result = new ArrayList<>();
-            Node<T> temp = firstNode;
+            Node<T> temp = header;
             while (temp != null) {
                 result.add(temp.getValue());
                 temp = temp.getNext();
