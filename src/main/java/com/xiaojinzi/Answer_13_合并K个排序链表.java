@@ -29,7 +29,7 @@ public class Answer_13_合并K个排序链表 {
     }
 
     /**
-     * 普通的方式
+     * 普通的方式, 时间复杂度：O(2L*M), L 为 nodes 的长度 M 为链表的长度
      */
     private static Node<Integer> merge1(Node<Integer>[] nodes) {
         // 声明返回值
