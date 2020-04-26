@@ -23,3 +23,15 @@
 - 7.回文数
     - [题目](./src/main/java/com/xiaojinzi/question/7-回文数.md)
     - [x] [Java 解答](./src/main/java/com/xiaojinzi/Answer_7_回文数.java)
+- 8.整数反转
+    - [题目](./src/main/java/com/xiaojinzi/question/8-整数反转.md)
+    - [x] [Java 解答](./src/main/java/com/xiaojinzi/Answer_8_整数反转.java)
+- 9.删除链表的倒数第N个节点
+    - [题目](./src/main/java/com/xiaojinzi/question/9-删除链表的倒数第N个节点.md)
+    - [x] [Java 解答](./src/main/java/com/xiaojinzi/Answer_9_删除链表的倒数第N个节点.java)
+- 10.合并两个有序链表
+    - [题目](./src/main/java/com/xiaojinzi/question/10-合并两个有序链表.md)
+    - [x] [Java 解答](./src/main/java/com/xiaojinzi/Answer_10_合并两个有序链表.java)
+- 11.移除元素
+    - [题目](./src/main/java/com/xiaojinzi/question/11-移除元素.md)
+    - [x] [Java 解答](./src/main/java/com/xiaojinzi/Answer_11_移除元素.java)
