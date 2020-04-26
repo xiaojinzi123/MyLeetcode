@@ -35,3 +35,6 @@
 - 11.移除元素
     - [题目](./src/main/java/com/xiaojinzi/question/11-移除元素.md)
     - [x] [Java 解答](./src/main/java/com/xiaojinzi/Answer_11_移除元素.java)
+- 12.字符串相乘
+    - [题目](./src/main/java/com/xiaojinzi/question/12-字符串相乘.md)
+    - [x] [Java 解答](./src/main/java/com/xiaojinzi/Answer_12_字符串相乘.java)
