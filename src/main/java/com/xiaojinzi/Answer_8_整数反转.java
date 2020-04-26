@@ -37,14 +37,8 @@ public class Answer_8_整数反转 {
             // 得到余数
             int remainer = temp % 10;
             int num = ((isNegative ? Integer.MIN_VALUE : Integer.MAX_VALUE) - remainer) / 10;
-            if (isNegative) {
-                if (num > result) {
-                    return 0;
-                }
-            } else {
-                if (num < result) {
-                    return 0;
-                }
+            if ((isNegative && num > result) || (!isNegative && num < result)) {
+                return 0;
             }
             result = result * 10 + remainer;
             temp /= 10;

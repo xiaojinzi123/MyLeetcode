@@ -2,7 +2,18 @@ package com.xiaojinzi.support;
 
 import com.xiaojinzi.support.annotation.Nullable;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class LinkedList<T> {
+
+    /**
+     * 对这个类进行全部的测试
+     */
+    public static void main(String[] args) {
+
+    }
 
     private int mSize;
 
@@ -30,7 +41,6 @@ public class LinkedList<T> {
         if (index > mSize || index < 0) {
             throw new IndexOutOfBoundsException("index " + index);
         }
-
         // 先排除是添加到最后一个的
         if (index == mSize) {
             return add(value);
@@ -40,16 +50,13 @@ public class LinkedList<T> {
             for (int i = 0; i < index; i++) {
                 target = target.getNext();
             }
-
             Node preAddNode = new Node(value);
             preAddNode.setPre(preAddNode.getPre());
             preAddNode.setNext(target);
             target.setPre(preAddNode);
-
             mSize++;
             return this;
         }
-
     }
 
     @Nullable
@@ -88,12 +95,26 @@ public class LinkedList<T> {
         if (target.getPre() == null) {
             firstNode = target.getNext();
             firstNode.setPre(null);
-        }else {
+        } else {
             // 如果有上一个, 就把上一个接到下一个
             target.getPre().setNext(target.getNext());
         }
         mSize--;
         return this;
+    }
+
+    public List<T> toList() {
+        if (firstNode == null) {
+            return Collections.emptyList();
+        }else {
+            List<T> result = new ArrayList<>();
+            Node<T> temp = firstNode;
+            while (temp != null) {
+                result.add(temp.getValue());
+                temp = temp.getNext();
+            }
+            return result;
+        }
     }
 
 }
