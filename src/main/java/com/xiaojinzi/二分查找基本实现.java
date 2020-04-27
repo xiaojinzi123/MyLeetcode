@@ -9,18 +9,24 @@ public class 二分查找基本实现 {
         int[] arr1 = new int[]{
                 1, 2, 3, 5, 6, 6, 7, 8, 9, 10
         };
-        int[] arr2 = new int[]{
-                2, 5
-        };
+        int[] arr2 = new int[]{2, 5};
+        int[] arr3 = new int[]{2};
+
         Assert.assertEquals(1, find1(arr1, 2));
         Assert.assertEquals(-1, find1(arr1, 11));
         Assert.assertEquals(0, find1(arr2, 2));
-        Assert.assertEquals(-1, find1(arr1, 11));
+        Assert.assertEquals(1, find1(arr2, 5));
+        Assert.assertEquals(-1, find1(arr2, 11));
+        Assert.assertEquals(0, find1(arr3, 2));
+        Assert.assertEquals(-1, find1(arr3, 11));
 
         Assert.assertEquals(1, find2(arr1, 2));
         Assert.assertEquals(-1, find2(arr1, 11));
         Assert.assertEquals(0, find2(arr2, 2));
+        Assert.assertEquals(1, find2(arr2, 5));
         Assert.assertEquals(-1, find2(arr2, 11));
+        Assert.assertEquals(0, find2(arr3, 2));
+        Assert.assertEquals(-1, find2(arr3, 11));
 
     }
 
@@ -30,14 +36,14 @@ public class 二分查找基本实现 {
      */
     private static int find1(int[] arr, int target) {
         int left = 0, right = arr.length - 1;
-        while (left < right) {
+        while (left <= right) {
             int mid = (left + right) / 2;
             if (arr[mid] == target) {
                 return mid;
-            } else if (arr[mid] >= target) {
-                right = mid;
-            } else {
+            } else if (target > arr[mid]) {
                 left = mid + 1;
+            } else {
+                right = mid;
             }
         }
         return -1;
