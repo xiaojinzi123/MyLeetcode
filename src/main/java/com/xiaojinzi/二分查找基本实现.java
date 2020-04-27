@@ -1,4 +1,4 @@
-package com.xiaojinzi.support;
+package com.xiaojinzi;
 
 import org.junit.Assert;
 
