@@ -1,7 +1,7 @@
 package com.xiaojinzi;
 
 import com.xiaojinzi.support.SearchTreeList;
-import com.xiaojinzi.support.TreeNode;
+import com.xiaojinzi.support.BinaryTreeNode;
 import org.junit.Assert;
 
 import java.util.*;
@@ -29,7 +29,7 @@ public class 二叉树的层次遍历 {
         treeList.add(8);
         treeList.add(20);
 
-        TreeNode<Integer> header = treeList.getHeader();
+        BinaryTreeNode<Integer> header = treeList.getHeader();
         Assert.assertEquals(
                 Arrays.asList(
                         Arrays.asList(5),
@@ -54,11 +54,11 @@ public class 二叉树的层次遍历 {
     /**
      * 利用广度优先遍历实现
      */
-    private static List<List<Integer>> breadthFirst(TreeNode<Integer> header) {
+    private static List<List<Integer>> breadthFirst(BinaryTreeNode<Integer> header) {
 
         List<List<Integer>> result = new ArrayList<>();
         // 声明一个队列
-        Queue<TreeNode<Integer>> q = new LinkedList();
+        Queue<BinaryTreeNode<Integer>> q = new LinkedList();
         q.add(header);
         int level = 0;
         while (!q.isEmpty()) {
@@ -67,7 +67,7 @@ public class 二叉树的层次遍历 {
             }
             int size = q.size();
             for (int count = 0; count < size; count++) {
-                TreeNode<Integer> node = q.remove();
+                BinaryTreeNode<Integer> node = q.remove();
                 result.get(level).add(node.getValue());
                 if (node.getLeft() != null) {
                     q.add(node.getLeft());
@@ -87,14 +87,14 @@ public class 二叉树的层次遍历 {
      * 递归中添加一个 level 参数表示当前是第几层,
      * 这样就能找到集合中对应的集合进行惭怍
      */
-    private static List<List<Integer>> preOrderRecursion(TreeNode<Integer> header) {
+    private static List<List<Integer>> preOrderRecursion(BinaryTreeNode<Integer> header) {
         List<List<Integer>> result = new ArrayList<>();
         doPreOrderRecursion(header, 1, result);
         return result;
     }
 
-    private static void doPreOrderRecursion(TreeNode<Integer> node, int level,
-                                    List<List<Integer>> result) {
+    private static void doPreOrderRecursion(BinaryTreeNode<Integer> node, int level,
+                                            List<List<Integer>> result) {
         if (node == null) {
             return;
         }

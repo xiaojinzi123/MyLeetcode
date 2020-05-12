@@ -22,10 +22,10 @@ public class SearchTreeList<T extends Comparable> {
      * 头指针
      */
     @Nullable
-    private TreeNode<T> header;
+    private BinaryTreeNode<T> header;
 
     @Nullable
-    public TreeNode<T> getHeader() {
+    public BinaryTreeNode<T> getHeader() {
         return header;
     }
 
@@ -44,7 +44,7 @@ public class SearchTreeList<T extends Comparable> {
     public boolean add(@NonNull T o) {
         boolean result;
         if (isEmpty()) {
-            header = new TreeNode<T>(o);
+            header = new BinaryTreeNode<T>(o);
             result = true;
         } else {
             result = addNode(header, o);
@@ -58,10 +58,10 @@ public class SearchTreeList<T extends Comparable> {
     public boolean remove(@NonNull T o) {
 
         // 找到要删除的节点和父节点
-        TreeNode<T> targetDeleteParentNode = null, targetDeleteNode = null;
+        BinaryTreeNode<T> targetDeleteParentNode = null, targetDeleteNode = null;
         boolean isLeft = false;
 
-        TreeNode<T> tempNode = header;
+        BinaryTreeNode<T> tempNode = header;
         while (tempNode != null) {
             // 如果相等
             if (o.compareTo(tempNode.getValue()) == 0) {
@@ -106,7 +106,7 @@ public class SearchTreeList<T extends Comparable> {
 
         // 2. 如果要删除的节点只有一个子节点
         if (targetDeleteNode.getLeft() == null || targetDeleteNode.getRight() == null) {
-            TreeNode<T> node = targetDeleteNode.getLeft();
+            BinaryTreeNode<T> node = targetDeleteNode.getLeft();
             if (node == null) {
                 node = targetDeleteNode.getRight();
             }
@@ -125,7 +125,7 @@ public class SearchTreeList<T extends Comparable> {
 
         // 3. 剩下一个情况就是有两个节点的了, 两个节点的又有两种情况
         // 要删除节点的后继节点, 也就是下一个大的节点
-        TreeNode<T> targetDeleteSuccessorNode = null, targetDeleteSuccessorParentNode;
+        BinaryTreeNode<T> targetDeleteSuccessorNode = null, targetDeleteSuccessorParentNode;
 
         // 寻找要删除节点的后继节点
         targetDeleteSuccessorParentNode = targetDeleteNode;
@@ -174,7 +174,7 @@ public class SearchTreeList<T extends Comparable> {
         return getNode(index).getValue();
     }
 
-    private TreeNode<T> getNode(int index) {
+    private BinaryTreeNode<T> getNode(int index) {
         if (index > mSize - 1 || index < 0) {
             throw new IndexOutOfBoundsException("index = " + index);
         }
@@ -184,11 +184,11 @@ public class SearchTreeList<T extends Comparable> {
     }
 
     @Nullable
-    private TreeNode<T> getRecursion(TreeNode<T> node, int[] arr) {
+    private BinaryTreeNode<T> getRecursion(BinaryTreeNode<T> node, int[] arr) {
         if (node == null) {
             return null;
         }
-        TreeNode<T> result = getRecursion(node.getLeft(), arr);
+        BinaryTreeNode<T> result = getRecursion(node.getLeft(), arr);
         if (result != null) {
             return result;
         }
@@ -224,7 +224,7 @@ public class SearchTreeList<T extends Comparable> {
      * @param target 目标值
      * @param result 保存找到的 index 和 节点 count 的数据对象
      */
-    private void indexElementRecursion(@Nullable TreeNode<T> node,
+    private void indexElementRecursion(@Nullable BinaryTreeNode<T> node,
                                        @NonNull T target, int[] result) {
         if (node == null) {
             return;
@@ -243,24 +243,24 @@ public class SearchTreeList<T extends Comparable> {
         }
     }
 
-    private boolean addNode(@NonNull TreeNode<T> treeNode, @NonNull T targetValue) {
+    private boolean addNode(@NonNull BinaryTreeNode<T> binaryTreeNode, @NonNull T targetValue) {
 
-        if (treeNode.getValue().compareTo(targetValue) == 0) {
+        if (binaryTreeNode.getValue().compareTo(targetValue) == 0) {
             return false;
         }
 
         // 如果目标值大于现在的节点的值, 说明要放到右节点
-        if (targetValue.compareTo(treeNode.getValue()) > 0) {
-            if (treeNode.getRight() == null) {
-                treeNode.setRight(new TreeNode(targetValue));
+        if (targetValue.compareTo(binaryTreeNode.getValue()) > 0) {
+            if (binaryTreeNode.getRight() == null) {
+                binaryTreeNode.setRight(new BinaryTreeNode(targetValue));
             } else {
-                return addNode(treeNode.getRight(), targetValue);
+                return addNode(binaryTreeNode.getRight(), targetValue);
             }
         } else {
-            if (treeNode.getLeft() == null) {
-                treeNode.setLeft(new TreeNode(targetValue));
+            if (binaryTreeNode.getLeft() == null) {
+                binaryTreeNode.setLeft(new BinaryTreeNode(targetValue));
             } else {
-                return addNode(treeNode.getLeft(), targetValue);
+                return addNode(binaryTreeNode.getLeft(), targetValue);
             }
         }
         return true;
@@ -268,18 +268,18 @@ public class SearchTreeList<T extends Comparable> {
     }
 
     @Nullable
-    private TreeNode<T> findNode(@Nullable TreeNode<T> treeNode, @NonNull T targetValue) {
+    private BinaryTreeNode<T> findNode(@Nullable BinaryTreeNode<T> binaryTreeNode, @NonNull T targetValue) {
 
-        if (treeNode == null) {
+        if (binaryTreeNode == null) {
             return null;
         }
         // 如果相等
-        if (treeNode.getValue().compareTo(targetValue) == 0) {
-            return treeNode;
-        } else if (targetValue.compareTo(treeNode.getValue()) > 0) { // 如果目标值比较大
-            return findNode(treeNode.getRight(), targetValue);
+        if (binaryTreeNode.getValue().compareTo(targetValue) == 0) {
+            return binaryTreeNode;
+        } else if (targetValue.compareTo(binaryTreeNode.getValue()) > 0) { // 如果目标值比较大
+            return findNode(binaryTreeNode.getRight(), targetValue);
         } else {
-            return findNode(treeNode.getLeft(), targetValue);
+            return findNode(binaryTreeNode.getLeft(), targetValue);
         }
 
     }
@@ -307,7 +307,7 @@ public class SearchTreeList<T extends Comparable> {
     }
 
     @NonNull
-    private void depthFirstRecursion(TreeNode<T> node, List<T> result) {
+    private void depthFirstRecursion(BinaryTreeNode<T> node, List<T> result) {
         if (node == null) {
             return;
         }
@@ -324,10 +324,10 @@ public class SearchTreeList<T extends Comparable> {
             return Collections.emptyList();
         }
         List<T> result = new ArrayList<>();
-        Deque<TreeNode<T>> deque = new LinkedList<>();
+        Deque<BinaryTreeNode<T>> deque = new LinkedList<>();
         deque.add(header);
         while (!deque.isEmpty()) {
-            TreeNode<T> node = deque.pop();
+            BinaryTreeNode<T> node = deque.pop();
             result.add(node.getValue());
             if (node.getLeft() != null) {
                 deque.add(node.getLeft());
@@ -339,7 +339,7 @@ public class SearchTreeList<T extends Comparable> {
         return result;
     }
 
-    private void inOrderRecursive(@Nullable TreeNode<T> node, List<T> result) {
+    private void inOrderRecursive(@Nullable BinaryTreeNode<T> node, List<T> result) {
         if (node != null) {
             inOrderRecursive(node.getLeft(), result);
             result.add(node.getValue());
