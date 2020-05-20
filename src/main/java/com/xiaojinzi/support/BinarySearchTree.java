@@ -11,7 +11,7 @@ import java.util.LinkedList;
  *
  * @param <T> 需要实现 {@link Comparable} 接口
  */
-public class SearchTreeList<T extends Comparable> {
+public class BinarySearchTree<T extends Comparable> {
 
     /**
      * 列表的长度

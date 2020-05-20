@@ -1,16 +1,15 @@
 package com.xiaojinzi;
 
-import com.xiaojinzi.support.SearchTreeList;
+import com.xiaojinzi.support.BinarySearchTree;
 import org.junit.Assert;
 
 import java.util.Arrays;
-import java.util.List;
 
 public class 二叉树的遍历 {
 
     public static void main(String[] args) {
 
-        SearchTreeList<Integer> treeList = new SearchTreeList<>();
+        BinarySearchTree<Integer> treeList = new BinarySearchTree<>();
 
         /**
          *     5

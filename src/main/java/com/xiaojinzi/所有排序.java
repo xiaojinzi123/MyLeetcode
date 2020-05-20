@@ -2,6 +2,8 @@ package com.xiaojinzi;
 
 import org.junit.Assert;
 
+import java.util.Stack;
+
 public class 所有排序 {
 
     static int[] arr1 = new int[]{5, 1};
@@ -26,8 +28,13 @@ public class 所有排序 {
     public static void main(String[] args) {
 
         reSetArr();
-        quickSort(arr1, 0, arr1.length - 1);
-        quickSort(arr2, 0, arr2.length - 1);
+        quickSort(arr1);
+        quickSort(arr2);
+        checkArr();
+
+        reSetArr();
+        quickSortLoop(arr1);
+        quickSortLoop(arr2);
         checkArr();
 
         reSetArr();
@@ -101,10 +108,14 @@ public class 所有排序 {
 
     }
 
+    private static void quickSort(int[] arr) {
+        quickSortRecursion(arr, 0, arr.length - 1);
+    }
+
     /**
      * 快速排序
      */
-    private static void quickSort(int[] arr, int start, int end) {
+    private static void quickSortRecursion(int[] arr, int start, int end) {
         if (start >= end) {
             return;
         }
@@ -133,8 +144,49 @@ public class 所有排序 {
         // 则下面的 arr[start] 换成 arr[end]
         arr[start] = arr[i];
         arr[i] = pivot;
-        quickSort(arr, 0, i - 1);
-        quickSort(arr, i + 1, end);
+        quickSortRecursion(arr, 0, i - 1);
+        quickSortRecursion(arr, i + 1, end);
+    }
+
+    /**
+     * 快速排序的非递归法
+     */
+    private static void quickSortLoop(int[] arr) {
+        // 存放下标
+        Stack<Integer> stack = new Stack();
+        stack.push(arr.length - 1);
+        stack.push(0);
+        // 不为空就循环
+        int start, end, i, j, pivot, temp;
+        while (!stack.isEmpty()) {
+            start = stack.pop();
+            end = stack.pop();
+            if (end <= start) {
+                continue;
+            }
+            i = start;
+            j = end;
+            pivot = arr[start];
+            while (i < j) {
+                while (arr[j] >= pivot && i < j) {
+                    j--;
+                }
+                while (arr[i] <= pivot && i < j) {
+                    i++;
+                }
+                if (i != j) {
+                    temp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = temp;
+                }
+            }
+            arr[start] = arr[i];
+            arr[i] = pivot;
+            stack.push(i - 1);
+            stack.push(start);
+            stack.push(end);
+            stack.push(i +1);
+        }
     }
 
     /**

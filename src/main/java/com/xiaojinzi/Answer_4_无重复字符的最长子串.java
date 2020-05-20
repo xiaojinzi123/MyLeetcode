@@ -43,7 +43,6 @@ public class Answer_4_无重复字符的最长子串 {
         if (targetStr.isEmpty()) {
             return null;
         }
-
         // 如果下标对应的值不是 null, 表示有值了, 是值对应的下标
         // 这里用 Map 也是 ok 的
         Integer[] arr = new Integer[256];

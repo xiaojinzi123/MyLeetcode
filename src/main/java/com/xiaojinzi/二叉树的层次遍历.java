@@ -1,6 +1,6 @@
 package com.xiaojinzi;
 
-import com.xiaojinzi.support.SearchTreeList;
+import com.xiaojinzi.support.BinarySearchTree;
 import com.xiaojinzi.support.BinaryTreeNode;
 import org.junit.Assert;
 
@@ -18,7 +18,7 @@ public class 二叉树的层次遍历 {
     public static void main(String[] args) {
 
         // 创建一个搜索二叉树
-        SearchTreeList<Integer> treeList = new SearchTreeList<>();
+        BinarySearchTree<Integer> treeList = new BinarySearchTree<>();
 
         treeList.add(5);
         treeList.add(2);
