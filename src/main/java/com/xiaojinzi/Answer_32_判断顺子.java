@@ -22,6 +22,9 @@ public class Answer_32_判断顺子 {
     }
 
     public static boolean isShunZu(int[] arr) {
+        if (arr == null || arr.length == 0) {
+            return false;
+        }
         int length = arr.length;
         // 王的个数
         int queenCount = 0;
