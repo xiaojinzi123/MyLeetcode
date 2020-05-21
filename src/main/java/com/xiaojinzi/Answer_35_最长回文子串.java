@@ -3,6 +3,11 @@ package com.xiaojinzi;
 import com.xiaojinzi.support.annotation.NonNull;
 import org.junit.Assert;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class Answer_35_最长回文子串 {
 
     public static void main(String[] args) {
@@ -40,6 +45,9 @@ public class Answer_35_最长回文子串 {
                 }
             }
         }
+        HashMap<String, List<String>> result = new HashMap();
+
+
         return s.substring(maxStart, maxStart + maxLength);
     }
 
